@@ -1,0 +1,6 @@
+{
+    "gemini_api_key": "${GEMINI_API_KEY}",
+    "server_port": 5000,
+    "debug_mode": true,
+    "cors_origins": ["*"]
+}

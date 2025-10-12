@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Tests: Pytest (C:)",
+      "type": "shell",
+      "command": "C:/Python313/python.exe",
+      "args": ["-m", "pytest", "-q"],
+      "options": { "cwd": "C:/Dev/SmartAir" },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "API: Start (uvicorn, C:)",
+      "type": "shell",
+      "command": "C:/Python313/python.exe",
+      "args": ["-m", "uvicorn", "app.main:app", "--reload", "--port", "8000"],
+      "options": { "cwd": "C:/Dev/SmartAir" },
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
