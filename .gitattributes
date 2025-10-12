@@ -1,0 +1,11 @@
+* text=auto
+
+# Enforce LF for cross-platform sources
+*.sh text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# PowerShell scripts typically use CRLF on Windows
+*.ps1 text eol=crlf
