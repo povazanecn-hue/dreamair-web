@@ -8,7 +8,8 @@
 
     const CONFIG = {
         apiEndpoint: 'https://api.smartair.space/reservations',
-        phone: '+421 915 033 440'
+        phone: '+421 915 033 440',
+        productsStorageKey: 'smartair_selected_products'
     };
 
     const styles = `
@@ -218,6 +219,50 @@
             display: none;
         }
 
+        .selected-products {
+            background: #f8fafc;
+            border: 2px dashed #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .selected-products h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .selected-products ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .selected-products li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .selected-products button {
+            border: none;
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
         .phone-link {
             display: block;
             text-align: center;
@@ -284,6 +329,14 @@
                         <input type="text" id="address" name="address" required placeholder="Ulica 123, Bratislava">
                     </div>
 
+                    <div class="form-group selected-products" id="selected-products">
+                        <h4>Vybrané produkty</h4>
+                        <ul id="selected-products-list">
+                            <li>Žiadne produkty nie sú vybrané.</li>
+                        </ul>
+                        <input type="hidden" name="selected_products" id="selected_products">
+                    </div>
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="preferred_date">Preferovaný dátum <span class="required">*</span></label>
@@ -325,11 +378,53 @@
         const typeOptions = document.querySelectorAll('.type-option');
         const timeSlots = document.querySelectorAll('.time-slot');
         const errorMessage = document.getElementById('error-message');
+        const selectedProductsList = document.getElementById('selected-products-list');
+        const selectedProductsField = document.getElementById('selected_products');
 
         // Set minimum date to today
         const dateInput = document.getElementById('preferred_date');
         const today = new Date().toISOString().split('T')[0];
         dateInput.min = today;
+
+        function getSelectedProducts() {
+            try {
+                return JSON.parse(localStorage.getItem(CONFIG.productsStorageKey) || '[]');
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveSelectedProducts(products) {
+            localStorage.setItem(CONFIG.productsStorageKey, JSON.stringify(products));
+        }
+
+        function renderSelectedProducts() {
+            const products = getSelectedProducts();
+            selectedProductsField.value = products.map(item => item.name).join(', ');
+
+            if (!products.length) {
+                selectedProductsList.innerHTML = '<li>Žiadne produkty nie sú vybrané.</li>';
+                return;
+            }
+
+            selectedProductsList.innerHTML = products
+                .map(item => `
+                    <li>
+                        <span>${item.name}</span>
+                        <button type="button" data-remove-product="${item.id}">Odstrániť</button>
+                    </li>
+                `)
+                .join('');
+
+            selectedProductsList.querySelectorAll('[data-remove-product]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-remove-product');
+                    const updated = getSelectedProducts().filter(item => item.id !== id);
+                    saveSelectedProducts(updated);
+                    renderSelectedProducts();
+                });
+            });
+        }
 
         // Type selection
         typeOptions.forEach(option => {
@@ -349,6 +444,8 @@
             });
         });
 
+        renderSelectedProducts();
+
         // Form submission
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -367,7 +464,11 @@
                 reservation_type: formData.get('reservation_type'),
                 preferred_date: formData.get('preferred_date'),
                 preferred_time: formData.get('preferred_time'),
-                message: formData.get('message') || null
+                message: formData.get('message') || null,
+                selected_products: (formData.get('selected_products') || '')
+                    .split(',')
+                    .map(item => item.trim())
+                    .filter(Boolean)
             };
 
             try {

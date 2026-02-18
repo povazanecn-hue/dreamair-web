@@ -53,6 +53,7 @@ class ReservationRequest(BaseModel):
     preferred_date: str  # ISO format date
     preferred_time: str  # e.g. "09:00-12:00"
     message: Optional[str] = None
+    selected_products: Optional[List[str]] = None
 
 
 class Reservation(BaseModel):
@@ -65,6 +66,7 @@ class Reservation(BaseModel):
     preferred_date: str
     preferred_time: str
     message: Optional[str]
+    selected_products: Optional[List[str]]
     status: ReservationStatus
     created_at: str
     updated_at: str
@@ -221,6 +223,7 @@ async def create_reservation(request: ReservationRequest) -> Reservation:
         preferred_date=request.preferred_date,
         preferred_time=request.preferred_time,
         message=request.message,
+        selected_products=request.selected_products,
         status=ReservationStatus.PENDING,
         created_at=now,
         updated_at=now,
@@ -496,6 +499,7 @@ async def admin_panel() -> str:
                         <p><span class="label">📍 Adresa:</span> ${r.address}</p>
                         <p><span class="label">📞 Telefón:</span> <a href="tel:${r.phone}">${r.phone}</a></p>
                         <p><span class="label">✉️ Email:</span> <a href="mailto:${r.email}">${r.email}</a></p>
+                        ${r.selected_products && r.selected_products.length ? `<p><span class="label">🧾 Produkty:</span> ${r.selected_products.join(', ')}</p>` : ''}
                         ${r.message ? `<p><span class="label">💬 Správa:</span> ${r.message}</p>` : ''}
                         ${r.admin_note ? `<p><span class="label">📝 Poznámka:</span> ${r.admin_note}</p>` : ''}
                         <p style="color:#999; font-size:12px; margin-top:8px;">ID: ${r.id} | Vytvorené: ${new Date(r.created_at).toLocaleString('sk')}</p>

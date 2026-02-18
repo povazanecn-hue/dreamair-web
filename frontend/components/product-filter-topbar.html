@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartAir - Produkty s horným filtrom</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@2/cmsfilter.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmssort@1/cmssort.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -12,9 +15,18 @@
             padding: 0;
         }
 
+        :root {
+            --primary: #3b82f6;
+            --secondary: #06b6d4;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8fafc;
+            background: var(--light);
             color: #1e293b;
         }
 
@@ -33,12 +45,12 @@
         .section-header h1 {
             font-size: 36px;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--dark);
             margin-bottom: 12px;
         }
 
         .section-header p {
-            color: #64748b;
+            color: var(--gray);
             font-size: 18px;
         }
 
@@ -67,8 +79,8 @@
             align-items: center;
             gap: 8px;
             padding: 12px 16px;
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
+            background: var(--light);
+            border: 2px solid var(--border);
             border-radius: 10px;
             font-size: 14px;
             font-weight: 500;
@@ -79,11 +91,11 @@
         }
 
         .filter-dropdown-btn:hover {
-            border-color: #3b82f6;
+            border-color: var(--primary);
         }
 
         .filter-dropdown-btn.active {
-            border-color: #3b82f6;
+            border-color: var(--primary);
             background: #eff6ff;
         }
 
@@ -146,8 +158,8 @@
         }
 
         .filter-dropdown-item input:checked + .filter-checkbox {
-            background: #3b82f6;
-            border-color: #3b82f6;
+            background: var(--primary);
+            border-color: var(--primary);
         }
 
         .filter-dropdown-item input:checked + .filter-checkbox::after {
@@ -173,7 +185,7 @@
         .quick-chip {
             padding: 8px 16px;
             background: white;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--border);
             border-radius: 20px;
             font-size: 13px;
             font-weight: 500;
@@ -183,13 +195,13 @@
         }
 
         .quick-chip:hover {
-            border-color: #3b82f6;
-            color: #3b82f6;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .quick-chip.selected {
-            background: #3b82f6;
-            border-color: #3b82f6;
+            background: var(--primary);
+            border-color: var(--primary);
             color: white;
         }
 
@@ -203,7 +215,7 @@
             padding: 12px 20px;
             background: transparent;
             border: none;
-            color: #64748b;
+            color: var(--gray);
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
@@ -215,7 +227,7 @@
 
         .filter-apply-btn {
             padding: 12px 24px;
-            background: #3b82f6;
+            background: var(--primary);
             border: none;
             border-radius: 10px;
             color: white;
@@ -264,7 +276,7 @@
 
         .active-filters-label {
             font-size: 14px;
-            color: #64748b;
+            color: var(--gray);
             font-weight: 500;
         }
 
@@ -307,11 +319,11 @@
 
         .results-count {
             font-size: 16px;
-            color: #64748b;
+            color: var(--gray);
         }
 
         .results-count strong {
-            color: #0f172a;
+            color: var(--dark);
             font-weight: 700;
         }
 
@@ -327,15 +339,15 @@
             align-items: center;
             justify-content: center;
             background: white;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--border);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .view-btn:hover, .view-btn.active {
-            border-color: #3b82f6;
-            color: #3b82f6;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .view-btn svg {
@@ -351,12 +363,12 @@
 
         .sort-dropdown label {
             font-size: 14px;
-            color: #64748b;
+            color: var(--gray);
         }
 
         .sort-dropdown select {
             padding: 10px 36px 10px 14px;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--border);
             border-radius: 10px;
             font-size: 14px;
             font-weight: 500;
@@ -411,7 +423,7 @@
         .product-image {
             position: relative;
             aspect-ratio: 4/3;
-            background: #f1f5f9;
+            background: var(--light);
             overflow: hidden;
         }
 
@@ -438,7 +450,7 @@
             text-transform: uppercase;
         }
 
-        .badge-new { background: #3b82f6; color: white; }
+        .badge-new { background: var(--primary); color: white; }
         .badge-sale { background: #ef4444; color: white; }
         .badge-eco { background: #22c55e; color: white; }
 
@@ -464,7 +476,7 @@
         .product-brand {
             font-size: 12px;
             font-weight: 600;
-            color: #64748b;
+            color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 6px;
@@ -473,7 +485,7 @@
         .product-name {
             font-size: 16px;
             font-weight: 600;
-            color: #0f172a;
+            color: var(--dark);
             margin-bottom: 12px;
             line-height: 1.3;
         }
@@ -489,7 +501,7 @@
             align-items: center;
             gap: 4px;
             font-size: 13px;
-            color: #64748b;
+            color: var(--gray);
         }
 
         .product-spec svg {
@@ -506,7 +518,7 @@
         .product-price {
             font-size: 20px;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--dark);
         }
 
         .product-price-old {
@@ -516,16 +528,34 @@
             margin-right: 8px;
         }
 
+        .product-actions {
+            display: flex;
+            gap: 8px;
+        }
+
         .product-btn {
             padding: 10px 18px;
-            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-            color: white;
-            border: none;
             border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
+            text-decoration: none;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-btn.primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .product-btn.outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
 
         .product-btn:hover {
@@ -576,18 +606,18 @@
 
         .empty-state h3 {
             font-size: 20px;
-            color: #0f172a;
+            color: var(--dark);
             margin-bottom: 8px;
         }
 
         .empty-state p {
-            color: #64748b;
+            color: var(--gray);
             margin-bottom: 24px;
         }
 
         .empty-state button {
             padding: 12px 24px;
-            background: #3b82f6;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 10px;
@@ -604,7 +634,7 @@
         .load-more-btn {
             padding: 16px 48px;
             background: white;
-            border: 2px solid #e2e8f0;
+            border: 2px solid var(--border);
             border-radius: 12px;
             font-size: 16px;
             font-weight: 600;
@@ -614,8 +644,20 @@
         }
 
         .load-more-btn:hover {
-            border-color: #3b82f6;
-            color: #3b82f6;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
@@ -844,7 +886,7 @@
         <!-- Products Grid -->
         <div class="products-grid" id="products-grid" fs-cmsfilter-element="list">
             <!-- Product Card 1 -->
-            <article class="product-card">
+            <article class="product-card" data-product-id="daikin-perfera" data-product-name="Daikin Perfera FTXM35R" data-product-price="1590">
                 <div class="product-image">
                     <img src="https://placehold.co/400x300/f1f5f9/64748b?text=Daikin+Perfera" alt="Daikin Perfera">
                     <div class="product-badges">
@@ -855,6 +897,15 @@
                 <div class="product-content">
                     <div class="product-brand">Daikin</div>
                     <h3 class="product-name">Perfera FTXM35R</h3>
+                    <div class="visually-hidden">
+                        <span fs-cmsfilter-field="category">Klimatizácie</span>
+                        <span fs-cmsfilter-field="brand-ref">Daikin</span>
+                        <span fs-cmsfilter-field="color">Biela</span>
+                        <span fs-cmsfilter-field="kW">3.5</span>
+                        <span fs-cmsfilter-field="energy-class">A+++</span>
+                        <span fs-cmsfilter-field="price-range">1500-2000€</span>
+                        <span fs-cmsfilter-field="installation-type">Nástenná</span>
+                    </div>
                     <div class="product-specs">
                         <span class="product-spec">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -864,13 +915,16 @@
                     </div>
                     <div class="product-footer">
                         <div class="product-price">1 590 €</div>
-                        <button class="product-btn">Detail</button>
+                        <div class="product-actions">
+                            <a class="product-btn outline" href="#">Detail</a>
+                            <button class="product-btn primary" data-add-product>Pridať do dopytu</button>
+                        </div>
                     </div>
                 </div>
             </article>
 
             <!-- Product Card 2 -->
-            <article class="product-card">
+            <article class="product-card" data-product-id="mitsubishi-msz-ln35vg" data-product-name="Mitsubishi MSZ-LN35VG Designer" data-product-price="1890">
                 <div class="product-image">
                     <img src="https://placehold.co/400x300/f1f5f9/64748b?text=Mitsubishi+MSZ" alt="Mitsubishi">
                     <div class="product-badges">
@@ -881,6 +935,15 @@
                 <div class="product-content">
                     <div class="product-brand">Mitsubishi</div>
                     <h3 class="product-name">MSZ-LN35VG Designer</h3>
+                    <div class="visually-hidden">
+                        <span fs-cmsfilter-field="category">Klimatizácie</span>
+                        <span fs-cmsfilter-field="brand-ref">Mitsubishi</span>
+                        <span fs-cmsfilter-field="color">Strieborná</span>
+                        <span fs-cmsfilter-field="kW">3.5</span>
+                        <span fs-cmsfilter-field="energy-class">A+++</span>
+                        <span fs-cmsfilter-field="price-range">1500-2000€</span>
+                        <span fs-cmsfilter-field="installation-type">Nástenná</span>
+                    </div>
                     <div class="product-specs">
                         <span class="product-spec">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -890,13 +953,16 @@
                     </div>
                     <div class="product-footer">
                         <div class="product-price">1 890 €</div>
-                        <button class="product-btn">Detail</button>
+                        <div class="product-actions">
+                            <a class="product-btn outline" href="#">Detail</a>
+                            <button class="product-btn primary" data-add-product>Pridať do dopytu</button>
+                        </div>
                     </div>
                 </div>
             </article>
 
             <!-- Product Card 3 -->
-            <article class="product-card">
+            <article class="product-card" data-product-id="lg-artcool-a12ft" data-product-name="LG Artcool Gallery A12FT" data-product-price="1099">
                 <div class="product-image">
                     <img src="https://placehold.co/400x300/f1f5f9/64748b?text=LG+Artcool" alt="LG Artcool">
                     <div class="product-badges">
@@ -907,6 +973,15 @@
                 <div class="product-content">
                     <div class="product-brand">LG</div>
                     <h3 class="product-name">Artcool Gallery A12FT</h3>
+                    <div class="visually-hidden">
+                        <span fs-cmsfilter-field="category">Klimatizácie</span>
+                        <span fs-cmsfilter-field="brand-ref">LG</span>
+                        <span fs-cmsfilter-field="color">Čierna</span>
+                        <span fs-cmsfilter-field="kW">3.5</span>
+                        <span fs-cmsfilter-field="energy-class">A++</span>
+                        <span fs-cmsfilter-field="price-range">1000-1500€</span>
+                        <span fs-cmsfilter-field="installation-type">Nástenná</span>
+                    </div>
                     <div class="product-specs">
                         <span class="product-spec">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -919,13 +994,16 @@
                             <span class="product-price-old">1 290 €</span>
                             <span class="product-price">1 099 €</span>
                         </div>
-                        <button class="product-btn">Detail</button>
+                        <div class="product-actions">
+                            <a class="product-btn outline" href="#">Detail</a>
+                            <button class="product-btn primary" data-add-product>Pridať do dopytu</button>
+                        </div>
                     </div>
                 </div>
             </article>
 
             <!-- Product Card 4 -->
-            <article class="product-card">
+            <article class="product-card" data-product-id="samsung-windfree" data-product-name="Samsung WindFree Elite" data-product-price="999">
                 <div class="product-image">
                     <img src="https://placehold.co/400x300/f1f5f9/64748b?text=Samsung+WindFree" alt="Samsung WindFree">
                     <span class="product-energy energy-a2">A++</span>
@@ -933,6 +1011,15 @@
                 <div class="product-content">
                     <div class="product-brand">Samsung</div>
                     <h3 class="product-name">WindFree Elite</h3>
+                    <div class="visually-hidden">
+                        <span fs-cmsfilter-field="category">Klimatizácie</span>
+                        <span fs-cmsfilter-field="brand-ref">Samsung</span>
+                        <span fs-cmsfilter-field="color">Biela</span>
+                        <span fs-cmsfilter-field="kW">2.5</span>
+                        <span fs-cmsfilter-field="energy-class">A++</span>
+                        <span fs-cmsfilter-field="price-range">do 1000€</span>
+                        <span fs-cmsfilter-field="installation-type">Nástenná</span>
+                    </div>
                     <div class="product-specs">
                         <span class="product-spec">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -942,7 +1029,10 @@
                     </div>
                     <div class="product-footer">
                         <div class="product-price">999 €</div>
-                        <button class="product-btn">Detail</button>
+                        <div class="product-actions">
+                            <a class="product-btn outline" href="#">Detail</a>
+                            <button class="product-btn primary" data-add-product>Pridať do dopytu</button>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -963,6 +1053,8 @@
     </section>
 
     <script>
+        const PRODUCT_STORAGE_KEY = 'smartair_selected_products';
+
         // Toggle dropdown
         function toggleDropdown(el) {
             // Close other dropdowns
@@ -996,6 +1088,39 @@
                 grid.classList.remove('list-view');
             }
         }
+
+        function getSelectedProducts() {
+            try {
+                return JSON.parse(localStorage.getItem(PRODUCT_STORAGE_KEY) || '[]');
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveSelectedProducts(products) {
+            localStorage.setItem(PRODUCT_STORAGE_KEY, JSON.stringify(products));
+        }
+
+        function handleAddToInquiry(event) {
+            const card = event.currentTarget.closest('.product-card');
+            if (!card) return;
+
+            const product = {
+                id: card.dataset.productId || '',
+                name: card.dataset.productName || '',
+                price: card.dataset.productPrice || ''
+            };
+
+            const selected = getSelectedProducts();
+            if (!selected.find(item => item.id === product.id)) {
+                selected.push(product);
+                saveSelectedProducts(selected);
+            }
+        }
+
+        document.querySelectorAll('[data-add-product]').forEach(btn => {
+            btn.addEventListener('click', handleAddToInquiry);
+        });
     </script>
 </body>
 </html>

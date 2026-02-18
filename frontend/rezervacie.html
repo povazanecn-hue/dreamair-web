@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAir - Rezervácie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #06b6d4;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: var(--gray);
+            font-size: 18px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .calendar-embed {
+            min-height: 520px;
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .calendar-embed iframe {
+            width: 100%;
+            min-height: 520px;
+            border: none;
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <div class="page-header">
+            <h1>Rezervácia obhliadky</h1>
+            <p>Vyberte si termín v kalendári a odošlite dopyt s vybranými produktmi.</p>
+        </div>
+
+        <div class="layout">
+            <section class="card">
+                <div id="smartair-reservation"></div>
+            </section>
+
+            <section class="card">
+                <h2 style="margin-bottom: 12px;">Kalendár dostupných termínov</h2>
+                <p style="color: var(--gray); margin-bottom: 16px;">
+                    Vyberte si termín v kalendári. Po odoslaní formulára vám termín potvrdíme.
+                </p>
+                <div class="calendar-embed">
+                    <!-- TODO: Vložte SuperSaaS embed iframe -->
+                    <div>Sem vložte SuperSaaS embed kód (iframe).</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="./widget/reservation-form.js"></script>
+</body>
+</html>
