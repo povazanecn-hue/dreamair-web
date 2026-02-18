@@ -1,13 +1,24 @@
 {
-  // Start new terminals in the copied project path on C: drive
-  "terminal.integrated.cwd": "C:\\Dev\\SmartAir",
-
   // Python test discovery and runner
   "python.testing.pytestEnabled": true,
-  "python.testing.pytestArgs": [
-    "tests"
-  ],
+  "python.testing.pytestArgs": ["tests"],
 
-  // Use the system Python configured in this environment
-  "python.defaultInterpreterPath": "C:\\Python313\\python.exe"
+  // Cross-platform: use workspaceFolder for terminal cwd
+  "terminal.integrated.cwd": "${workspaceFolder}",
+
+  // Editor settings for consistent formatting
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // Python-specific settings
+  "python.analysis.typeCheckingMode": "basic",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  }
 }
