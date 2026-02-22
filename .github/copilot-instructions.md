@@ -43,3 +43,12 @@ Use this as a practical map to build, test, and deploy SmartAir quickly.
 Questions for maintainers
 - Confirm required Python version and dependency pins (`requirements.txt`).
 - Confirm final domains if different from defaults.
+
+## Cross-AI repo governance (MENUMAT context)
+- Canonical repository name for the MENUMAT project context is `MENUMAT-MENUMAESTRO-AKTUAL`.
+- Before making changes, read `.ai-context/current-sprint.md` and verify latest Lovable push.
+- Use branch + PR workflow; do not assume direct pushes to `main` are allowed.
+- Merge is allowed only after explicit owner approval.
+
+- Read `.ai-context/cloud-knowledge.md` before large refactors to avoid blocking Lovable workflows.
+- Keep changes compatible with Lovable-generated structure unless owner approved otherwise.
