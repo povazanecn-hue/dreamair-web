@@ -1,21 +1,24 @@
-# Cursor AI Rules – SmartAir
+# Cursor AI Rules – DreamAir Web (dreamair-web)
 
 ## Projekt
-SmartAir s.r.o. – klimatizácie Bratislava. Webflow + Cloudflare Workers.
+DreamAir s.r.o. – predaj a montáž klimatizácií, Bratislava, SK.
+GitHub repo: dreamair-web
+Majiteľ: Mgr. Norbert Považanec.
 Jazyk UI: slovenčina. Jazyk kódu: angličtina.
 
 ## Pravidlá
-- Nikdy necommituj .env súbory
-- Vždy pracuj cez feature branchy, nie priamo na main
+- NIKDY necommituj .env (API kľúče, tokeny!)
+- main branch – zmeny len cez PR
 - Commit správy: feat:, fix:, docs:, refactor: (Conventional Commits)
-- Pred zmenami si prečítaj CLAUDE.md
+- Branch naming: feature/nazov, fix/nazov
 
 ## Stack
 - Cloudflare Workers (JS/TS)
 - Python FastAPI (legacy)
+- Webflow CMS API
 - GitHub Actions CI/CD
 
-
 ## Doppler
-Vždy spúšťaj príkazy cez `doppler run -- <príkaz>`.
+Vždy spúšťaj príkazy cez `doppler run --`.
 Nikdy nenavrhuj .env s reálnymi hodnotami. Pozri DOPPLER.md.
+Doppler projekt: `dreamair`
