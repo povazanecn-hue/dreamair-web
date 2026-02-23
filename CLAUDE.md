@@ -1,16 +1,16 @@
-# CLAUDE.md – SmartAir Web Project
+# CLAUDE.md – DreamAir Web Project
 
 > Tento súbor je určený pre AI asistentov (Claude, Copilot, Cursor, Codex).
 > Prečítaj ho celý pred akoukoľvek zmenou v repozitári.
 
 ## 🏢 O projekte
 
-**SmartAir** je webová prezentácia a backend pre firmu SmartAir s.r.o. (Bratislava, SK).
-Firma predáva a montuje klimatizácie DAIKIN, Samsung, TCL, Midea.
+**DreamAir** je webová prezentácia a backend pre firmu DreamAir s.r.o. (Bratislava, SK).
+Firma predáva, montuje a servisuje klimatizácie (DAIKIN, Samsung, TCL, Midea).
 
 - **Web:** Webflow CMS (frontend) + Cloudflare Workers (API backend)
 - **Jazyk:** Slovenčina (SK) – všetok obsah webu je po slovensky
-- **Majiteľ:** Mgr. Norbert Považanec (SmartAir s.r.o., Kopčianska 8, 85101 Bratislava)
+- **Majiteľ:** Mgr. Norbert Považanec (DreamAir s.r.o., Bratislava)
 
 ## 🏗️ Architektúra
 
@@ -19,7 +19,7 @@ Webflow CMS (frontend/obsah)
     ↕ Webflow API
 Cloudflare Workers (API layer)
     ↕ GitHub Actions (CI/CD deploy)
-GitHub repo (zdrojový kód)
+GitHub repo: dreamair-web
 ```
 
 ## 📁 Štruktúra repozitára
@@ -38,10 +38,20 @@ GitHub repo (zdrojový kód)
 - GitHub Actions pre auto-deploy
 - Webflow CMS API integrácia
 
-## 🔑 Premenné prostredia
+## 🔑 Premenné prostredia – Doppler
 
-Pozri `.env.example` – NIKDY necommituj `.env`!
-Skutočné hodnoty sú len lokálne alebo v Cloudflare dashboard.
+Projekt používa **Doppler** na centrálnu správu API kľúčov.
+Pozri `DOPPLER.md` pre návod.
+
+```bash
+# Spustenie projektu
+doppler run -- npm run dev
+
+# Prvé nastavenie
+doppler setup   # vyberte projekt: dreamair
+```
+
+NIKDY necommituj `.env`! Pozri `.env.example` pre zoznam premenných.
 
 ## 🚦 Pravidlá pre AI asistentov
 
@@ -60,52 +70,18 @@ Skutočné hodnoty sú len lokálne alebo v Cloudflare dashboard.
 
 - Commit správy: `feat:`, `fix:`, `docs:`, `refactor:` (Conventional Commits)
 - Jazyk kódu: angličtina
-- Jazyk komentárov a dokumentácie: slovenčina alebo angličtina
+- Jazyk komentárov a dokumentácie: slovenčina
 - Branch naming: `feature/nazov`, `fix/nazov`, `docs/nazov`
 
-## 🔄 Posledné zmeny (changelog pre AI)
+## 🔄 Changelog pre AI
 
+- **2026-02-23** – Projekt premenovaný SmartAir → DreamAir (dreamair-web)
+- **2026-02-23** – Pridaný Doppler systém správy kľúčov
 - **2026-02-23** – Pridaný `.env` do `.gitignore` (security fix)
-- **2026-02-23** – Pridaný `.env.example` template
-- **2026-02-23** – Vytvorený tento CLAUDE.md
-- **2026-02-23** – Prečistené staré vetvy (codex/*, revert-*)
+- **2026-02-23** – Vytvorené AI context súbory (CLAUDE.md, .cursorrules, copilot-instructions)
 
 ## 🤝 Súvisiace projekty
 
 - `menumat-ecb44ba0` – MENUMAT aplikácia (reštauračný menu systém)
-- `MENUGENERATOR` – starší menu generátor
-- DreamAir s.r.o. – sesterská firma (rovnaký majiteľ)
-
-## ❓ Pri pochybnostiach
-
-Ak si nie si istý zmenou, **opýtaj sa majiteľa** pred commitom.
-Kontakt: Norbert Považanec (SmartAir s.r.o.)
-
-
----
-
-## 🔑 Správa tajomstiev – Doppler
-
-Tento projekt používa **Doppler** na centrálnu správu API kľúčov.
-
-### Spustenie projektu
-```bash
-# SPRÁVNE – kľúče sa načítajú automaticky
-doppler run -- npm run dev
-
-# NESPRÁVNE – nikdy nespúšťaj bez Doppleru ak nemáš .env
-npm run dev
-```
-
-### Prvé nastavenie na novom PC
-```bash
-npm install -g @doppler/cli
-doppler login
-doppler setup   # v root priečinku projektu
-```
-
-### Pre AI asistentov
-- Vždy použi `doppler run --` prefix pri spúšťaní príkazov
-- Nikdy nevytváraj `.env` s reálnymi hodnotami
-- Dokumentácia: pozri `DOPPLER.md` v tomto repozitári
-- GitHub Secrets sú synchronizované automaticky z Doppler
+- `MENUGENERATOR` – experimentálny menu generátor
+- Majiteľ prevádzkuje aj firmu SmartAir s.r.o. (samostatná)
