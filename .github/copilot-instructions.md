@@ -1,20 +1,20 @@
-# GitHub Copilot Instructions – SmartAir
+# GitHub Copilot Instructions – DreamAir Web
 
-## Projekt
-SmartAir / MENUGENERATOR – Webflow + Cloudflare Workers.
-Majiteľ: Mgr. Norbert Považanec (SmartAir s.r.o., Bratislava).
-Jazyk UI: slovenčina. Jazyk kódu: angličtina.
+Tento súbor číta GitHub Copilot automaticky pri práci v tomto repozitári.
+
+## Kontext projektu
+DreamAir s.r.o. – predaj, montáž a servis klimatizácií (Bratislava, SK).
+GitHub repo: dreamair-web
+Web: Webflow CMS + Cloudflare Workers backend.
+Majiteľ: Mgr. Norbert Považanec.
 
 ## Pravidlá
+- Jazyk UI a dokumentácie: slovenčina
+- Jazyk kódu: angličtina
 - NIKDY nenavrhuj commitovanie .env súborov alebo API kľúčov
 - Vždy pracuj cez feature branchy, nie priamo do main
 - Commit správy: Conventional Commits (feat:, fix:, docs:, refactor:)
-- Pred veľkými zmenami si prečítaj CLAUDE.md v root priečinku
+- Doppler projekt: `dreamair` – príkazy spúšťaj cez `doppler run --`
 
-## Stack
-Pozri CLAUDE.md pre kompletný kontext.
-
-
-## Doppler – správa kľúčov
-Projekt používa Doppler. Príkazy spúšťaj cez `doppler run --`.
-Nikdy nenavrhuj commitovanie .env. GitHub Secrets sú sync z Doppler.
+## Dôležité
+Pred veľkými zmenami si prečítaj CLAUDE.md pre úplný kontext projektu.
